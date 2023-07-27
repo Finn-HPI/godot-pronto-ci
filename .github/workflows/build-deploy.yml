@@ -18,7 +18,7 @@ jobs:
       run: |
         echo "GAME_DIR_LOCAL=$(./scripts/check_for_export.sh)" >> $GITHUB_ENV
         echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> "$GITHUB_OUTPUT"
-        echo "GAME_NAME=$(`echo $GAME_DIR | sed 's|.*/||'`)" >> "$GITHUB_OUTPUT"
+        echo "GAME_NAME=`echo $GAME_DIR | sed 's|.*/||'`" >> "$GITHUB_OUTPUT"
     - name: Test GAME_DIR
       run: |
         echo $GAME_DIR_LOCAL
