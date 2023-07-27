@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       GAME_DIR: ${{steps.output_step.outputs.GAME_DIR}}
+      GAME_NAME: ${{steps.output_step.outputs.GAME_NAME}}
     steps:
     - uses: actions/checkout@v3
     - name: Check for ExportBehavior in scenes
@@ -17,6 +18,7 @@ jobs:
       run: |
         echo "GAME_DIR_LOCAL=$(./scripts/check_for_export.sh)" >> $GITHUB_ENV
         echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> "$GITHUB_OUTPUT"
+        echo "GAME_NAME=$(`echo $GAME_DIR | sed 's|.*/||'`)" >> "$GITHUB_OUTPUT"
     - name: Test GAME_DIR
       run: |
         echo $GAME_DIR_LOCAL
@@ -29,14 +31,12 @@ jobs:
     runs-on: ubuntu-20.04
     env:  # Set the environment variable using the output parameter value
       GAME_DIR: ${{ needs.find_export_game.outputs.GAME_DIR }}
+      GAME_NAME: ${{ needs.find_export_game.outputs.GAME_NAME }}
     # container:
     #   image: barichello/godot-ci:4.1
     steps:
       - name: Extract GAME_NAME
         run: |
-          GAME_X=`echo $GAME_DIR | sed 's|.*/||'`
-          echo $GAME_X
-          echo "GAME_NAME=$GAME_X" >> $GITHUB_ENV
           echo $GAME_NAME
       # - name: Checkout
       #   uses: actions/checkout@v3
