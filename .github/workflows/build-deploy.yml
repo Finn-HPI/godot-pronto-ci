@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: test
+      run: ./scripts/check_for_export.sh
     - name: Check for ExportBehavior in scenes
       run: echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> "$GITHUB_OUTPUT"
     - name: Test GAME_DIR
