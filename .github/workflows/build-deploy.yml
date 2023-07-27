@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Extract GAME_NAME
         run: |
-          echo "GAME_NAME=$((echo $GAME_DIR) | sed 's|.*/||')" >> $GITHUB_ENV
+          echo "GAME_NAME=$GAME_DIR | sed 's|.*/||'" >> $GITHUB_ENV
           echo $GAME_NAME
       - name: Checkout
         uses: actions/checkout@v3
