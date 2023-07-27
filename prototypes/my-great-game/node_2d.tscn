@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://djc03fpl44f6n"]
+
+[ext_resource type="Script" path="res://addons/pronto/behaviors/PlaceholderShapeBehavior.gd" id="1_jueai"]
+[ext_resource type="Script" path="res://addons/pronto/behaviors/ExportBehavior.gd" id="2_rsr34"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PlaceholderShapeBehavior" type="Node2D" parent="."]
+position = Vector2(595, 356)
+script = ExtResource("1_jueai")
+color = Color(0, 0.027451, 1, 1)
+placeholder_size = Vector2(500, 180)
+
+[node name="ExportBehavior" type="Node2D" parent="."]
+script = ExtResource("2_rsr34")
+title = "Blue Rect"
+authors = PackedStringArray("Finn")
+description = "this is a blue rect"
