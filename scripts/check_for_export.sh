@@ -9,5 +9,5 @@ if [ $COUNT -eq 1 ]
 then
     echo $GAME_FOLDER
 else
-    echo "undefined"
+    exit 1
 fi
