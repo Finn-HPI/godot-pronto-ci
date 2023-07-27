@@ -8,14 +8,18 @@ jobs:
   find_export_game:
     name: Check For ExportBehavior
     runs-on: ubuntu-latest
+    outputs:
+      GAME_DIR: ${{steps.output_step.outputs.GAME_DIR}}
     steps:
     - uses: actions/checkout@v3
     - name: Check for ExportBehavior in scenes
+      id: output_step
       run: |
         echo "GAME_DIR_LOCAL=$(./scripts/check_for_export.sh)" >> $GITHUB_ENV
-        echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> $GITHUB_OUTPUT
+        echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> "$GITHUB_OUTPUT"
     - name: Test GAME_DIR
-      run: echo $GAME_DIR_LOCAL
+      run: |
+        echo $GAME_DIR_LOCAL
     - name: Exit Check
       run: if [[ $GAME_DIR_LOCAL = Error:* ]]; then exit 1; fi
 
