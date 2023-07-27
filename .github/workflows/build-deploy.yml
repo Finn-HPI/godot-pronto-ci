@@ -17,7 +17,7 @@ jobs:
       run: echo $GAME_DIR
 
   export-web:
-    if: $GAME_DIR != 'undefined'
+    if: ${{GAME_DIR}} != 'undefined'
     name: Build Web Export & Deploy
     runs-on: ubuntu-20.04
     container:
