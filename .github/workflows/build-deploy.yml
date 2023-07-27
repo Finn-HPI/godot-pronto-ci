@@ -5,7 +5,7 @@ env:
   GODOT_VERSION: 4.1
   
 jobs:
-  check-if-export-needed:
+  find_export_game:
     name: Check For ExportBehavior
     runs-on: ubuntu-latest
     steps:
@@ -16,9 +16,11 @@ jobs:
       run: echo $GAME_DIR
 
   export-web:
-    needs: check-if-export-needed
+    needs: find_export_game
     name: Build Web Export & Deploy
     runs-on: ubuntu-20.04
+    env:  # Set the environment variable using the output parameter value
+      GAME_DIR: ${{ needs.find_export_game.outputs.GAME_DIR }}
     container:
       image: barichello/godot-ci:4.1
     steps:
