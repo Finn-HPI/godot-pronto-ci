@@ -11,9 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: test
-      run: ./scripts/check_for_export.sh
+      run: |
+        GAME_DIR=$(./scripts/check_for_export.sh)
+        echo $GAME_DIR
     - name: Check for ExportBehavior in scenes
-      run: echo "GAME_DIR=$(./scripts/check_for_export.sh)" >> "$GITHUB_OUTPUT"
+      run: echo $GAME_DIR >> "$GITHUB_OUTPUT"
     - name: Test GAME_DIR
       run: echo $GAME_DIR
     - name: Exit Check
