@@ -28,8 +28,8 @@ jobs:
     steps:
     - name: Test GAME_DIR
       run: |
-        echo ${GAME_DIR}
-        echo ${env.GAME_DIR}
+        echo $GAME_DIR
+        echo ${{env.GAME_DIR}}
         echo ${{needs.find_export_game.outputs.GAME_DIR}}
 
   # export-web:
